@@ -54,12 +54,6 @@ addBtn.addEventListener('click', (e) => {
                 num--;
                 p.textContent = String(num);
             });
-            // newSpan.addEventListener('click', () => {
-            //     div.removeChild(newDiv);
-            //     num--;
-            //     p.textContent = String(num);
-            // });
-
             newDiv.addEventListener("dragstart", dragStart);
             newDiv.addEventListener("dragend", dragEnd);
         });
@@ -79,18 +73,21 @@ function removeTodoFromDiv(todoDiv) {
     if (todoElement) {
         todoDiv.removeChild(todoElement);
     }
+    // console.log("removeTodoFromDiv");
 }
 function dragStart(e) {
     draggableTodo = this;
     const targetDiv = e.target.closest('.todo-box');
-    const pElement = targetDiv.querySelector('h2 > p'); // Get reference to the p element in the target div
-    pElement.textContent = String(Number(pElement.textContent) - 1); // Update the num value
+    // console.log(targetDiv);
+    // const pElement = targetDiv.querySelector('h2 > p'); // Get reference to the p element in the target div
+    // pElement.textContent = String(Number(pElement.textContent) - 1); // Update the num value
     setTimeout(() => {
         this.style.display = 'none';
     }, 0);
+    // console.log("dragStart");
 }
 
-function dragEnd(event) {
+function dragEnd() {
     this.style.display = 'flex';
     draggableTodo = null;
     // const todoBoxParent = this.closest('.todo-box');
@@ -100,6 +97,7 @@ function dragEnd(event) {
     //         todoBoxParent.removeChild(todoElement);
     //     }
     // }
+    // console.log("dragEnd");
 
 }
 
@@ -110,25 +108,36 @@ mainForm.addEventListener("drop", drop);
 
 function dragOver(event) {
     event.preventDefault();
+    // console.log("dragOver")
 }
 
-function dragEnter(event) {
-    event.preventDefault();
+function dragEnter(e) {
+    e.preventDefault();
     this.style.border = "2px dashed #ccc";
+    // console.log("dragEnter")
+
 }
 
-function dragLeave() {
+function dragLeave(e) {
+    e.preventDefault();
     this.style.border = "none";
+    console.log("dragLeave")
+    const targetDiv = e.target.closest('.todo-box');
+    const pElement = targetDiv.querySelector('p');
+    console.log(pElement.textContent);
+    pElement.textContent = String(Number(pElement.textContent) - 1);
 }
 
 function drop(e) {
+    console.log("drop")
     this.style.border = "none";
     const targetDiv = e.target.closest('.todo-box');
     if (targetDiv) {
         targetDiv.appendChild(draggableTodo);
     }
-    const pElement = targetDiv.querySelector('h2 > p'); // Get reference to the p element in the target div
-    pElement.textContent = String(Number(pElement.textContent) + 1); // Update the num value
+    const pElement = targetDiv.querySelector('p');
+    pElement.textContent = String(Number(pElement.textContent) + 1);
+
 }
 
 const searchInput = document.querySelector('.search-input');
@@ -136,26 +145,32 @@ const searchStatus = document.createElement('p'); // 추가한 부분
 
 // 검색 상태 텍스트 스타일링
 searchStatus.classList.add('search-status');
-searchStatus.style.fontSize = '14px';
-searchStatus.style.marginTop = '5px';
+
 
 // 검색창 아래에 추가
-searchInput.parentNode.insertBefore(searchStatus, searchInput.nextSibling)
-console.log(searchInput.value);
+const topSection = document.querySelector('.top-section');
+topSection.after(searchStatus);
+
 searchInput.addEventListener('input', (e) => {
 
     e.preventDefault();
-    console.log("제출")
-    const searchKeyword = searchInput.value.toLowerCase();
+    // console.log(searchInput.value);
+    const searchKeyword = searchInput.value;
     let hasMatch = false; // 검색 결과가 있는지 여부를 나타내는 변수
     const todos = document.querySelectorAll('.todo');
-    // console.log(todos);
+
 
     todos.forEach(todo => {
-        // console.log(todo.textContent);
+        const parsedTodoContent = todo.textContent.replace(/[\u00d7]/g, '')
+        console.log(parsedTodoContent);
+        if (parsedTodoContent===searchKeyword) {
+            hasMatch = true;
+        }
     });
 
     // 검색 결과에 따라 검색 상태 텍스트 변경
-    searchStatus.textContent = hasMatch ? '검색 결과 있음' : '검색 결과 없음';
+    searchStatus.innerHTML = hasMatch
+        ? `<strong>'${searchKeyword}'</strong>가 검색되었습니다.`
+        : '검색된 값 없음';
     searchStatus.style.color = hasMatch ? 'green' : 'red';
 });
