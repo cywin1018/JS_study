@@ -1,0 +1,27 @@
+:root{
+    --background-color: linear-gradient(to left top,#121920, #536976);
+    --primary-color: #9747FF;
+    --surface-color:#1F252C;
+    --onsurface-color:#DFDFDF;
+    --from-background-color : #121920;
+}
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    --primary-color:#FF637F;
+}
+/*div{*/
+/*    display: inline-block;*/
+/*    text-align: center;*/
+/*}*/
+/*img{*/
+/*    display: block;*/
+/*}*/
+.pokemon{
+    display: inline-block;
+    text-align: center;
+}
+.pokemon img{
+    display: block;
+}

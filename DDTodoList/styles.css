@@ -1,0 +1,151 @@
+body{
+    width: 80%;
+    height: 100vh;
+
+}
+.header-form{
+    /*position: absolute;*/
+    /*top: 15%;*/
+    /*left: 40%;*/
+    /*transform: translate(-30%, -40%);*/
+    width: 60%;
+    position: relative;
+    left: 30%;
+    top: 10%;
+}
+.title{
+    position: relative;
+    display: inline-block;
+    margin: -2px;
+    left: 15%;
+}
+
+.add-btn{
+    background-color: #ffffff;
+    border-radius: 5px;
+    margin-left: 10px;
+    border: none;
+    color: #1F252C;
+    cursor: pointer;
+    font-size: 1rem;
+    padding-top: 2px;
+}
+.add-btn:hover{
+    background-color: #343444;
+    color: #ffffff;
+    transition: background-color 0.6s ease, color 0.6s ease;
+}
+.top-section{
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+}
+.list-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.search-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.search-form i{
+    margin-right: 10px;
+}
+.search-form input{
+    background-color: #ececef;
+    outline: none;
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 5px;
+    width: 100%;
+}
+.divider {
+    width: 100%;
+    height: 2px;
+    background-color: #ccc;
+    margin-top: 10px;
+    margin-bottom: -5px;
+}
+/* ============  main 부분 css 적용 ============== */
+.divider2{
+    width: 100%;
+    height: 2px;
+    background-color: #ccc;
+    margin-top: 10px;
+    margin-bottom: -5px;
+    position: relative;
+}
+.main-form{
+    position: initial;
+    height: 80vh;
+    left: 10%;
+    top: 10%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+.todo-box{
+    width:200px;
+    height: 500px;
+    position: relative;
+}
+.headerDiv{
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+}
+.headerDiv h2{
+    border-radius: 5px;
+    font-size: 1.2rem;
+    margin: 5px;
+}
+.headerDiv p{
+    margin-left: 5px;
+}
+.todo{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    background-color: #fff;
+    box-shadow: rgba(15, 15, 15, 1) 0px 0px 0px 1px,
+    rgba(15, 15, 15, 0.1) 0px 2px 4px;
+    border-radius: 4px;
+    padding: 0.5rem 1.8rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    /*margin: 0.5rem 0;*/
+}
+.close {
+    position: relative;
+    top: 0rem;
+    font-size: 2rem;
+    color: #ccc;
+    cursor: pointer;
+}
+.close:hover {
+    color: #343444;
+}
+
+.new-input-form{
+    display: flex;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+.new-input-form input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+}
+.new-input-form button{
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.6s ease;
+}
+
